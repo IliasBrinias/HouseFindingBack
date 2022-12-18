@@ -1,6 +1,6 @@
 package com.unipi.msc.HouseFindingBack.Security;
 
-import com.unipi.msc.HouseFindingBack.User.UserDao;
+import com.unipi.msc.HouseFindingBack.Model.UserDao;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;

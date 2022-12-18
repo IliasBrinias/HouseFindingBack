@@ -1,7 +1,9 @@
-package com.unipi.msc.HouseFindingBack.Controllers;
+package com.unipi.msc.HouseFindingBack.Controller.Auth;
 
+import com.unipi.msc.HouseFindingBack.Controller.Auth.Requests.AuthenticationLoginRequest;
+import com.unipi.msc.HouseFindingBack.Controller.Auth.Requests.AuthenticationSignUpRequest;
 import com.unipi.msc.HouseFindingBack.Security.jwtUtils;
-import com.unipi.msc.HouseFindingBack.User.UserDao;
+import com.unipi.msc.HouseFindingBack.Model.UserDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,7 +24,7 @@ public class AuthenticationController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<String> authenticate(@RequestBody AuthenticationRequest request){
+    public ResponseEntity<String> authenticate(@RequestBody AuthenticationLoginRequest request){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()));
         final UserDetails user = userDao.findUserByEmail(request.getEmail());
         if (user!=null){
@@ -31,13 +33,9 @@ public class AuthenticationController {
         return ResponseEntity.status(400).body("Some error has occurred");
     }
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody AuthenticationRequest request){
-//        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()));
-        final UserDetails user = userDao.findUserByEmail(request.getEmail());
-        if (user!=null){
-            return ResponseEntity.ok(jwtUtils.generateToken(user));
-        }
-        return ResponseEntity.status(400).body("Some error has occurred");
+    public ResponseEntity<String> register(@RequestBody AuthenticationSignUpRequest request){
+        //TODO: Entity Framework Implementation
+        return ResponseEntity.noContent().build();
     }
 
 }

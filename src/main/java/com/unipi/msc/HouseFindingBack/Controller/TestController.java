@@ -1,4 +1,4 @@
-package com.unipi.msc.HouseFindingBack.Controllers;
+package com.unipi.msc.HouseFindingBack.Controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
